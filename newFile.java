@@ -6,6 +6,12 @@ public class newFile {
 
 	public static void main(String[] args) {
 
+		openingDialogue();
+
+	}
+
+	public static void runLevels() {
+
 		level1();
 		runSelectedLevel();
 		level2();
@@ -140,15 +146,76 @@ public class newFile {
 			endGame(false);
 		}
 
-		score = 0;
-		lives = 3;
-
 		return message;
 	}
 
 	public static void endGame(boolean success) {
 
-		
+		Scanner sc = new Scanner(System.in);
+
+		if (success) {
+
+			System.out.println("Congratulations! You beat the game!");
+			
+
+		} else {
+
+			System.out.println("Unfortunately, you did not beat the game.");
+
+		}
+
+		System.out.println("\nYour score was: " + score);
+		System.out.println("You had " + lives + " lives remaining.");
+
+		System.out.println("\nWould you like to play again?");
+		System.out.println("1. yes\n2. no");
+
+		int userInput = sc.nextInt();
+
+		switch(userInput) {
+
+			case 1:
+				System.out.println("\n\n\n");
+				runLevels();
+				break;
+			case 2:
+				System.out.println("\nThank you for playing our game!");
+				System.exit(0);
+				break;
+		}
+
+	}
+
+	public static void openingDialogue() {
+
+		Scanner sc = new Scanner(System.in);
+			
+		System.out.println("Welcome to the game:");
+
+		System.out.println("The objective is to go through 4 levels of math problems.");
+
+		System.out.println("Each level is more challenging than the previous.");
+
+		System.out.println("To pass a level, you must solve 10 questions correctly.");
+
+		System.out.println("However, you only have 3 lives in each level. For every incorrct answer, you lose a life.");
+
+		System.out.println("Once you have 0 lives, the game is over.");
+
+		System.out.println("Would you like to start the game?\n1. Yes\n2. No");
+
+		int userInput = sc.nextInt();
+
+		System.out.println("");
+
+		switch(userInput) {
+			case 1:
+				runLevels();
+				break;
+			case 2:
+				System.exit(0);
+				break;
+		}
 
 	}
 
