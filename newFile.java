@@ -30,6 +30,8 @@ public class newFile {
 			System.out.println(currentQuestion.printQuestion());
 			userAnswer = sc.nextInt();
 
+			System.out.println("");
+
 			if (currentQuestion.checkAnswer(userAnswer)) {
 				score++;
 				System.out.println("You got it!");
@@ -37,7 +39,12 @@ public class newFile {
 				lives--;
 				System.out.println("Try again!");
 			}
+
+			System.out.println("");
+		
 		}
+
+		System.out.println("\n\n");
 
 		System.out.println(endLevel());
 
@@ -55,6 +62,8 @@ public class newFile {
 		numMin = 1;
 		numMax = 10;
 
+		System.out.println("Starting level 1...\n");
+
 	}
 
 	//This method runs the first level of the game, where there are two integers in the range of 1-10.
@@ -69,6 +78,8 @@ public class newFile {
 		numMin = 1;
 		numMax = 10;
 
+		System.out.println("Starting level 2...\n");
+
 	}
 
 	//This method runs the first level of the game, where there are two integers in the range of 1-10.
@@ -82,6 +93,8 @@ public class newFile {
 		qMin = 3;
 		numMin = 1;
 		numMax = 10;
+
+		System.out.println("Starting level 3...\n");
 
 	}
 
