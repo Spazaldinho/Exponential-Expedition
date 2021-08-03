@@ -137,13 +137,19 @@ public class newFile {
 			message = "You passed the level!";
 		} else {
 			message = "You didn't pass the level!";
-
+			endGame(false);
 		}
 
 		score = 0;
 		lives = 3;
 
 		return message;
+	}
+
+	public static void endGame(boolean success) {
+
+		
+
 	}
 
 }
