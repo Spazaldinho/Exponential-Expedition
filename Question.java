@@ -6,10 +6,34 @@ public class Question {
 	public int answer = 0;
 	public char operand = '0';
 	
-	Question(int a, int b) {
+	Question(int a, int b, int i) {
 		
 		firstNum = a;
 		secondNum = b;
+
+		switch(i) {
+		
+			case 1:
+				operand = '+';
+				answer = firstNum + secondNum;
+				break;
+				
+			case 2:
+				operand = '-';
+				answer = firstNum - secondNum;
+				break;
+				
+			case 3:
+				operand = '*';
+				answer = firstNum * secondNum;
+				break;
+				
+			case 4:
+				operand = '/';
+				answer = firstNum;
+				firstNum *= secondNum;
+				break;
+			}
 		
 	}
 	
@@ -25,46 +49,21 @@ public class Question {
 		return operand;
 	}
 	
-	public int operand(int i) {
-		
-		switch(i) {
-		
-		case 1:
-			operand = '+';
-			answer = firstNum + secondNum;
-			break;
-			
-		case 2:
-			operand = '-';
-			answer = firstNum - secondNum;
-			break;
-			
-		case 3:
-			operand = '*';
-			answer = firstNum * secondNum;
-			break;
-			
-		case 4:
-			operand = '/';
-			answer = firstNum / secondNum;
-			break;
-		}
-		
+	public int returnAnswer() {
+
 		return answer;
 	}
+
+	public String printQuestion() {
+		String question = firstNum + " " + operand + " " + secondNum + " = __?";
+		return question;
+	}
 	
-	public String checkAnswer(int userInput) {
-		String correct = "You got it!";
-		String incorrect = "Try again!";
-		String message = "";
+	public boolean checkAnswer(int userInput) {
+
+		boolean answerCorrect = userInput == answer;
 		
-		if (userInput == answer) {
-			message = correct;
-		} else {
-			message = incorrect;
-		}
-		
-		return message;
+		return answerCorrect;
 	}
 	
 }
