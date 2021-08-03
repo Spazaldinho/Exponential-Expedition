@@ -12,6 +12,7 @@ public class newFile {
 		runSelectedLevel();
 		level3();
 		runSelectedLevel();
+		level4();
 
 	}
 
@@ -66,10 +67,26 @@ public class newFile {
 
 	}
 
-	//This method runs the first level of the game, where there are two integers in the range of 1-10.
+	//This method runs the third level of the game, where there are two integers in the range of 1-20.
+	//To pass this level, you must achieve a score of 10 without getting more than 3 questions wrong.
+	//This question has addition and subtraction.
+	public static void level2() {
+
+		score = 0;
+		lives = 3;
+		qMax = 2;
+		qMin = 1;
+		numMin = 1;
+		numMax = 20;
+
+		System.out.println("Starting level 2...\n");
+
+	}
+
+	//This method runs the third level of the game, where there are two integers in the range of 1-10.
 	//To pass this level, you must achieve a score of 10 without getting more than 3 questions wrong.
 	//This question has addition, subtraction, and multiplication.
-	public static void level2() {
+	public static void level3() {
 
 		score = 0;
 		lives = 3;
@@ -78,14 +95,14 @@ public class newFile {
 		numMin = 1;
 		numMax = 10;
 
-		System.out.println("Starting level 2...\n");
+		System.out.println("Starting level 3...\n");
 
 	}
 
-	//This method runs the first level of the game, where there are two integers in the range of 1-10.
+	//This method runs the fourth level of the game, where there are two integers in the range of 1-10.
 	//To pass this level, you must achieve a score of 10 without getting more than 3 questions wrong.
 	//This question only has division and multiplication problems.
-	public static void level3() {
+	public static void level4() {
 
 		score = 0;
 		lives = 3;
@@ -94,7 +111,7 @@ public class newFile {
 		numMin = 1;
 		numMax = 10;
 
-		System.out.println("Starting level 3...\n");
+		System.out.println("Starting level 4...\n");
 
 	}
 
@@ -120,6 +137,7 @@ public class newFile {
 			message = "You passed the level!";
 		} else {
 			message = "You didn't pass the level!";
+
 		}
 
 		score = 0;
