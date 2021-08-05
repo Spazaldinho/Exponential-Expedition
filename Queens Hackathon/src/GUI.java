@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import javax.swing.*;
 
-public class GUI {
+public class GUI implements ActionListener{
 	
 	//game variables
 	public static int qMax, qMin, numMax, numMin, operandDecider, firstNum, secondNum, score, lives;
@@ -35,13 +35,16 @@ public class GUI {
 
 	TitleScreenHandler tsHandler = new TitleScreenHandler();
 	
+	int userAnswer;
+
+	static Question currentQuestion;
+	
 	public GUI() {
 		
 		//opening screen		
 
 		title = new JLabel("Welcome :)", SwingConstants.CENTER);
 		title.setFont(TITLEFONT);
-		
 		
 		question = new JLabel("", SwingConstants.CENTER);
 		JButton begin = new JButton("BEGIN");
@@ -112,12 +115,21 @@ public class GUI {
 		QUESTIONPANEL.setBackground(Color.white);
 		QUESTIONPANEL.add(question);
 		FRAME.add(QUESTIONPANEL);
+		con.add(QUESTIONPANEL);
 		
 		TEXTFIELDPANEL = new JPanel();
 		TEXTFIELDPANEL.setBounds(175, 350, 450, 100);	
 		TEXTFIELDPANEL.setBackground(Color.white);
 		TEXTFIELDPANEL.add(answer);
 		FRAME.add(TEXTFIELDPANEL);	
+		con.add(TEXTFIELDPANEL);
+		
+		JButton submit = new JButton("Done");
+		submit.setFont(LABELFONT);
+		submit.setBackground(Color.green);
+		submit.setForeground(Color.white);
+		submit.addActionListener(new GUI());
+		TEXTFIELDPANEL.add(submit);
 		
 		runLevels();
 		
@@ -128,48 +140,46 @@ public class GUI {
  	public static void runLevels() {
 	
  		level1();
-		runSelectedLevel();
+ 		runSelectedLevels();
 		level2();
-		runSelectedLevel();
+ 		runSelectedLevels();
 		level3();
-		runSelectedLevel();
+ 		runSelectedLevels();
 		level4();
-		runSelectedLevel();
+ 		runSelectedLevels();
 
 	}
 
- 	public static void runSelectedLevel() {
-
-		int userAnswer = 0;
-
-		Scanner sc = new Scanner(System.in);
-
-		Question currentQuestion;
-		
+ 	public static void runSelectedLevels() {
+				
 		while (score < 10 && lives > 0 ) {
-			stats.setText("Score: " + score + "    Lives" + lives);
-
-			currentQuestion = generateQuestion();
-
-			question.setText("10 - 5 =");
-			userAnswer = sc.nextInt();
-
-
-			while (!currentQuestion.checkAnswer(userAnswer)) {
-				lives--;
-				question.setText("Try again!");
-				userAnswer = sc.nextInt();
-
-			}
-			score++;				
-			title.setText("You got it!");
-
-		
+			submit();
+			stats.setText("Score: " + score + "   Lives: " + lives);
+				
 		}
 
 
 		question.setText(endLevel());
 
+	}
+		
+	private static void submit() {
+		int userAnswer = 0;
+		
+		currentQuestion = generateQuestion();
+
+		question.setText(currentQuestion.printQuestion());
+		userAnswer = Integer.parseInt(answer.getText());
+
+
+		while (!currentQuestion.checkAnswer(userAnswer)) {
+			lives--;
+			question.setText("Try again!");
+			userAnswer = Integer.parseInt(answer.getText());
+
+		}
+		score++;				
+		question.setText("You got it!");		
 	}
 
 	//This method runs the first level of the game, where there are two integers in the range of 1-10.
@@ -178,14 +188,13 @@ public class GUI {
 	public static void level1() {
 		
 		title.setText("level 1!");
-
 		score = 0;
 		lives = 3;
 		qMax = 2;
 		qMin = 1;
 		numMin = 1;
 		numMax = 10;
-	
+
 	}
 
 	//This method runs the third level of the game, where there are two integers in the range of 1-20.
@@ -193,7 +202,7 @@ public class GUI {
 	//This question has addition and subtraction.
 	public static void level2() {
 		title.setText("level 2!");
-
+	
 		score = 0;
 		lives = 3;
 		qMax = 2;
@@ -290,9 +299,24 @@ public class TitleScreenHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("begun");
 		Start();
 	} 
+	
+	@Override
+	public void actionPerformed(actionEvent e) {
+		//rules
+		
+	}
 }
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+		submit();
+}
+
+
 	
 
 }
